@@ -4,6 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 const fileUpload = require('express-fileupload');
 
+
 class Server {
 
     constructor() {
@@ -24,12 +25,13 @@ class Server {
         this.app.use(express.static('public'));
         this.app.use(cors());
         this.app.use(fileUpload({
-            useTempFiles:true,
-            tempFileDir:'/tmp'
+            useTempFiles: true,
+            tempFileDir: '/tmp'
         }));
     }
 
     routes() {
+        this.app.use(require('../routes/productionRoute'));
         this.app.use(this.paths.auth, require('../routes/auth'));
         this.app.use(this.paths.notes, require('../routes/notes'));
         this.app.use(this.paths.users, require('../routes/users'));
