@@ -31,10 +31,10 @@ class Server {
     }
 
     routes() {
-        this.app.use(require('../routes/productionRoute'));
         this.app.use(this.paths.auth, require('../routes/auth'));
         this.app.use(this.paths.notes, require('../routes/notes'));
         this.app.use(this.paths.users, require('../routes/users'));
+        this.app.use(require('../routes/productionRoute'));
     }
 
     async dbConnect() {
